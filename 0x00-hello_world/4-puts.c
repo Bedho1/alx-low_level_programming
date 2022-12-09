@@ -1,7 +1,7 @@
 #include <stdio.h>
 /**
- *main -print lines of codes
- *return: always 0 (sucess)
+ * main -print lines of codes
+ * Return: always 0 (sucess)
  */
 
 int main(void)
