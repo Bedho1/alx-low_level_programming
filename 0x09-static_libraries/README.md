@@ -1,1 +1,1 @@
-this is my static library
+this is static libraries
