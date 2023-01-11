@@ -2,26 +2,40 @@
 #include <stdlib.h>
 
 /**
- * array_range - creates an array of integers.
- * @min: minimum value
- * @max: maximum value.
- *
- * Return: pointer to the newly created array.
- *
- * if man > mix, returns NULL.
- * if malloc fails, returns NULL.
+ * alloc_grid - nested loop to make grid
+ * @width: width inpu
+ * @height: height inpu
+ * Return: pointer to 2 dim. array
  */
-int *array_range(int min, int max)
+int **alloc_grid(int width, int height)
 {
-	int *ar;
-	int i;
+	int **mee;
+	int x, y;
 
-	if (min > max)
+	if (width <= 0 || height <= 0)
 		return (NULL);
-	ar = malloc(sizeof(*ar) * ((max - min) + 1));
-	if (ar == NULL)
-		return (NULL);
-	for (i = 0; min <= max; i++, min++)
-		ar[i] = min;
-	return (ar);
+	mee = malloc(sizeof(int *) * height);
+	if (mee == NULL)
+		for (x = 0; x < height; x++)
+		{
+			mee[x] = malloc(sizeof(int) * width);
+			if (mee[x] == NULL)
+			{
+				for (; x >= 0; x--)
+					free(mee[x]);
+				free(mee);
+				return (NULL);
+			}
+		}
+	for (x = 0; x < height; x++)
+	{
+		for (y = 0; y < width; y++)
+			mee[x][y] = 0;
+	}
+	return (mee);
 }
+
+
+
+
+
